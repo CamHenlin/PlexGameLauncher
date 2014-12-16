@@ -322,7 +322,7 @@ def MainMenu(Func='', Secret='', **kwargs):
 		else:
 			oc.add(DirectoryObject(key = Callback(GetConsoleList, title = L("MENU_CONSOLE")), title = L("MENU_CONSOLE")))
 		oc.add(DirectoryObject(key = Callback(SearchList, title = L("MENU_SEARCH")), title = L("MENU_SEARCH")))
-		oc.add(DirectoryObject(key = Callback(MaintainanceList, title = L("MENU_MAINTAINANCE")), title = L("MENU_MAINTAINANCE"), thumb = R(PREFS_ICON)))
+		oc.add(DirectoryObject(key = Callback(MaintenanceList, title = L("MENU_MAINTENANCE")), title = L("MENU_MAINTENANCE"), thumb = R(PREFS_ICON)))
 		return oc
 	elif Func=='allconsoles':
 		return GetXMLFileFromUrl(Secret, kwargs.get("Url").split('&_')[0])
@@ -358,8 +358,8 @@ def SearchList(title):
 	return oc
 
 ####################################################################################################
-@route(PREFIX + '/maintainancelist')
-def MaintainanceList(title):
+@route(PREFIX + '/maintenancelist')
+def MaintenanceList(title):
 	oc = ObjectContainer(title2 = title)
 	oc.add(DirectoryObject(key = Callback(RefreshDB), title = L("MENU_PREF_REFRESH_ROM")))
 	oc.add(DirectoryObject(key = Callback(ListUnknown, title = L("MENU_PREF_LIST_UNKOWN")), title = L("MENU_PREF_LIST_UNKOWN")))
