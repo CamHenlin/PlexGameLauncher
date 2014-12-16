@@ -1,0 +1,306 @@
+<!DOCTYPE html "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+
+<head profile="http://www.w3.org/2005/10/profile">
+	<meta charset='utf-8' />
+	<meta http-equiv='cache-control' content='no-cache'>
+	<meta http-equiv='expires' content='0'>
+	<meta http-equiv='pragma' content='no-cache'>
+	<title>Game Launcher</title>
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+
+	<script type="text/javascript" src="jscript/jquery-1.11.1.min.js"></script>
+	<script src="jscript/bootstrap.min.js"></script>
+</head>
+<script type="text/javascript">
+var loadingScreen = "<div class='mainText'>Loading...</div>"
+
+var timerstart = 0;
+
+// Populate the libraries menu.
+$(document).ready(function() {
+	$("#LibraryBox table").html(loadingScreen);
+	$.ajax({
+		url: "jscript/settings.js",
+		cache: false,
+		dataType: "script",
+		global: false,
+		success: function() {
+			$("#PageBar").html("Game Launcher");
+			$.ajax({
+				url: "jscript/functions.js",
+				cache: false,
+				dataType: "script",
+				global: false,
+				success: function() {
+					/**
+					 * Check that the settings have been set.
+					 */
+					if (PathToPlexMediaFolder === false) {
+						log_add("Error: Go through plugin preferences in Plex first.");
+						fatal_error = true;
+					} else {
+						// Fetch the current settings and set the checkboxes accordingly.
+						if (options_hide_integrated == "true") {
+							$("input[name=Option_HideIntegrated]").prop("checked", true);
+							options_hide_integrated = true;
+						}
+						if (options_hide_local == "true") {
+							$("input[name=Option_HideLocal]").prop("checked", true);
+							options_hide_local = true;
+						}
+
+						if (options_hide_empty_subtitles == "true") {
+							$("input[name=Option_HideEmptySubtitles]").prop("checked", true);
+							options_hide_empty_subtitles = true;
+						}
+
+						if (options_only_multiple == "true") {
+							$("input[name=Option_ShowOnlyMultiple]").prop("checked", true);
+							options_only_multiple = true;
+						}
+
+						if (options_auto_select_duplicate == "true") {
+							$("input[name=Option_Autoselect]").prop("checked", true);
+							options_auto_select_duplicate = true;
+						}
+						$("input[name=items_per_page]").val(items_per_page);
+
+						// Changed list_sections(); to go via function_loader
+
+						function_loader("fetch_sections");
+					}
+				},
+			});
+		},
+	});
+});
+
+
+
+// Function borrowed from Stackoverflow
+function getDateTime() {
+	var now = new Date();
+	var year = now.getFullYear();
+	var month = now.getMonth() + 1;
+	var day = now.getDate();
+	var hour = now.getHours();
+	var minute = now.getMinutes();
+	var second = now.getSeconds();
+	if (month.toString().length == 1) {
+		var month = '0' + month;
+	}
+	if (day.toString().length == 1) {
+		var day = '0' + day;
+	}
+	if (hour.toString().length == 1) {
+		var hour = '0' + hour;
+	}
+	if (minute.toString().length == 1) {
+		var minute = '0' + minute;
+	}
+	if (second.toString().length == 1) {
+		var second = '0' + second;
+	}
+	var dateTime = year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+	return dateTime;
+}
+
+function start_timer() {
+	$("#PageLoadingTime").html("<div class='VideoSubtitle'>Calculating page loading time... <div>");
+	timerstart = Date.now();
+
+}
+
+function end_timer() {
+	$("#PageLoadingTime").html("<div class='VideoSubtitle'>Page loading time: " + Math.floor((Date.now() - timerstart)) / 1000 + "s</div>");
+}
+</script>
+
+<body>
+	<table cellpadding="0" cellspacing="0" class="BoxTable">
+		<tr>
+			<td class="BoxTable_td mediumlong">
+				<div id="MenuBar" class="headline_">
+					<button onclick='window.location.href="index.html";' class="btn btn-default btn-xs">Home</button>
+				</div>
+				<div id="MenuBox">
+					<div id="LibraryBox" class='VideoBox'>
+						<div class='VideoHeadline'>Consoles</div>
+						<div class='VideoSubtitle'>
+							<table cellpadding=0 cellspacing=0 style='width: 100%'>
+							</table>
+						</div>
+					</div>
+					<form name='SearchBox' onSubmit="search_set();return false;">
+						<div id="SearchBox">
+						</div>
+					</form>
+					<form name='RefreshBox' onSubmit="options_set();return false;">
+						<div id="RefreshBox" class='VideoBox'>
+							<div class='VideoHeadline'>Scan options</div>
+							<div class='VideoSubtitle'>
+								<table cellpadding=0 cellspacing=0 style='width: 100%'>
+									<tr class='hovering'>
+										<td class='mainText'><span class='link' onclick='scan_roms("new");'>Scan for new roms</span>
+										</td>
+									</tr>
+									<tr class='hovering'>
+										<td class='mainText'><span class='link' onclick='scan_roms("metaunknown");'>Update metadata for unknown roms</span>
+										</td>
+									</tr>
+									<tr class='hovering'>
+										<td class='mainText'><span class='link' onclick='scan_roms("metaknown");'>Update metadata for known roms</span>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</form>
+					<form name='OptionsBox' onSubmit="options_set();return false;" style="visibility: hidden">
+						<div id="OptionsBox" class='VideoBox'>
+							<div class='VideoHeadline'>Options</div>
+							<div class='VideoSubtitle'>
+								<table cellpadding=0 cellspacing=0 style='width: 100%'>
+									<tr>
+										<td class="mainText">
+											<input type="checkbox" name="Option_HideLocal">Hide local subtitles</td>
+									</tr>
+									<tr>
+										<td class="mainText">
+											<input type="checkbox" name="Option_HideEmptySubtitles">Hide videos without subtitles</td>
+									</tr>
+									<tr>
+										<td class="mainText">
+											<input type="checkbox" name="Option_HideIntegrated">Hide integrated subtitles</td>
+									</tr>
+									<tr>
+										<td class="mainText">
+											<input type="checkbox" name="Option_ShowOnlyMultiple">Show only multiple subtitles/language</td>
+									</tr>
+									<tr>
+										<td class="mainText">
+											<input type="checkbox" name="Option_Autoselect">Autoselect duplicates based on XML</td>
+									</tr>
+									<tr>
+										<td class="mainText">
+											<input type="text" name="items_per_page" size="2">Items per page</td>
+									</tr>
+									<tr>
+										<td class="mainText">
+											<input type="submit" value="Save Options" class="btn btn-default btn-xs">
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</form>
+				</div>
+			</td>
+			<td class="BoxTable_td">
+				<div>
+					<div id="PageBar"></div>
+					<div id="EditBox">
+						<div class='VideoBox'>
+							<div class='VideoHeadline'>Edit</div>
+							<div class='VideoSubtitle'>
+								<table cellspacing=0 cellpadding=0 style='width: 100%'>
+									<tr>
+										<td class='mainText'>
+											<label for="title">Title: </label>
+										</td>
+										<td>
+											<input id="edit_title" name="title" type="text" size="39">
+										</td>
+									</tr>
+									<tr>
+										<td class='mainText'>
+											<label for="boxart">Boxart url: </label>
+										</td>
+										<td>
+											<input id="edit_boxart" name="boxart" type="text" size="39">
+										</td>
+									</tr>
+									<tr>
+										<td class='mainText'>
+											<label for="description">Description: </label>
+										</td>
+										<td>
+											<textarea id="edit_description" name="description" cols="40" rows="8"></textarea>
+										</td>
+									</tr>
+								</table>
+								<input type="hidden" id="id" name="id" value="">
+							</div>
+							<div class='VideoBottom'>
+								<button class='btn btn-default btn-xs' onclick='$("#EditBox").css("visibility","hidden");'>Cancel</button>
+								<button class='btn btn-default btn-xs' onclick='save_rom();'>Save</button>
+							</div>
+						</div>
+					</div>
+					<div id="ScanBox">
+						<div class='VideoBox'>
+							<div class='VideoHeadline'>Scanning for new roms</div>
+							<div class='VideoSubtitle'>
+								<table cellspacing=0 cellpadding=0 style='width: 100%'>
+									<tr>
+										<td class='mainText'>Please wait while we are scanning for new roms :-)</td>
+									</tr>
+								</table>
+							</div>
+							<div class='VideoBottom'></div>
+						</div>
+					</div>
+				</div>
+				<div id="MainBox">
+					<div class='VideoBox'>
+						<div class='VideoHeadline'>Welcome</div>
+						<div class='VideoSubtitle'>
+							<table cellspacing=0 cellpadding=0 style='width: 100%'>
+								<tr>
+									<td class='mainText'>
+										Welcome to the database editor.
+										<br>
+										<b>Usage is on your own risk!</b>
+										<br>
+										<br>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div id='Log' class='VideoBox'>
+					<div class='VideoHeadline'>Log</div>
+					<div class='VideoSubtitle'>Nothing to tell..</div>
+				</div>
+				<div id='PageLoadingTime' class='VideoBox center'>
+					<div class='VideoSubtitle'>Page loading time: calculating...</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<iframe id="WorkFrame" class="hiddenframe"></iframe>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					Placeholder
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

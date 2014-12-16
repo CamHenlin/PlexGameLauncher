@@ -1,0 +1,65 @@
+{
+    "systems" : {
+        "arcade" : {
+            "mame" : ["mame"],
+            "aae" : ["mame"],
+            "daphne" : ["daphne"],
+            "sega naomi" : ["mame"],
+            "sammy atomiswave" : ["mame"],
+            "capcom play system" : ["mame"],
+			"sega model 2" : ["mame"],
+			"sega model 3" : ["supermodel", "mame"],
+			"cave sh3" : ["mamecave"],
+			"toaplan" : ["mame"],
+			"zinc" : ["mame"]
+        },
+        "console" : {
+        	"atari 2600" : ["mess", "stella"],
+            "atari 5200" : ["atari800macx", "mess"],
+            "atari 7800" : ["mess"],
+			"coleco colecovision" : ["mess"],
+			"nec pc-fx" : ["mednafen"],
+			"nec turbografx-16" : ["mess", "mednafen"],
+			"nec turbografx-cd" : ["mednafen"],
+			"nec supergrafx" : ["mess", "mednafen"],
+			"nintendo 64" : ["mupen64plus", "sixtyforce", "mess"],
+            "nintendo entertainment system" : ["mess", "openemu"],
+            "nintendo gamecube" : ["dolphin"],
+            "nintendo wii" : ["dolphin"],
+            "nintendo wii virtual console" : ["dolphin"],
+            "sega 32x" : ["kegafusion", "mess", "openemu"],
+            "sega cd" : ["kegafusion", "mess", "openemu"],
+            "sega dreamcast" : ["lxdream", "mess"],
+            "sega genesis" : ["kegafusion", "mess", "openemu"],
+            "sega master system" : ["mess", "openemu"],
+            "sega saturn" : ["yabause"],
+            "sega sg-1000" : ["mess", "openemu"],
+            "sony playstation" : ["pcsxr"],
+            "sony playstation 2" : ["pcsx2"],
+            "super nintendo entertainment system" : ["snes9x", "mess", "openemu", "bsnes"]
+        },
+        "handheld" : {
+            "atari lynx" : ["mess", "handy"],
+            "bandai wonderswan" : ["mess", "oswan", "mednafen"],
+            "bandai wonderswan color" : ["mess", "oswan", "mednafen"],
+			"nintendo ds" : ["dssmume"],
+			"nintendo game boy" : ["mess", "openemu"],
+			"nintendo game boy color" : ["mess", "openemu"],
+			"nintendo game boy advance" : ["mess", "openemu"],
+            "sega game gear" : ["mess", "openemu"],
+			"sony playstation portable" : ["jpsp"]
+        },
+        "pc" : {
+        	"atari 8-bit" : ["mess", "atari800macx"],
+			"commodore 64" : ["mess", "virtualc64"],
+            "commodore amiga" : ["fsuae", "uae"],
+            "commodore amiga cd32" : ["fsuae"],
+            "commodore amiga cdtv" : ["fsuae"],
+            "msx-2" : ["openmsx"],
+			"mac os" : ["macos"],
+            "residualvm" : ["residualvm"],
+            "scummvm" : ["scummvm"],
+            "sinclair zx spectrum" : ["fuse"]
+        }
+    }
+}

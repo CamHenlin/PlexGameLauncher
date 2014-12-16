@@ -1,0 +1,139 @@
+[
+	{
+		"id" : "PMS_Path",
+		"type" : "text",
+		"default" : "127.0.0.1",
+		"label" : "IP_ADDRESS"
+	},
+	{
+		"id" : "EMU_ROOT",
+		"type" : "text",
+		"default" : "/Users/CURRENT_USERNAME/Library/Application Support/Plex Media Server/GameLauncher Emulators/",
+		"label" : "PREF_EMUROOT"
+	},
+	{
+		"id" : "ROM_ROOT",
+		"type" : "text",
+		"default" : "/Users/CURRENT_USERNAME/Documents/ROMs",
+		"label": "PREF_ROMROOT"
+	},
+	{
+
+		"id" : "ENABLE_FAVORITES",
+		"type" : "bool",
+		"default" : "False",
+		"label" : "PREF_ENABLEFAVORITES"
+	},
+	{
+
+		"id" : "SEPERATE_ARCADE_LIST",
+		"type" : "bool",
+		"default" : "False",
+		"label" : "PREF_SEPERATEARCADELIST"
+	},
+	{
+
+		"id" : "THREADED_GRABBER",
+		"type" : "bool",
+		"default" : "False",
+		"label" : "PREF_THREADED_GRABBER"
+	},
+	{
+
+		"id" : "MAME_GRABBER_ORDER",
+		"type" : "enum",
+		"default" : "ProgettoEmma->MAWS",
+		"values" : ["MAWS->ProgettoEmma", "ProgettoEmma->MAWS"],
+		"label" : "PREF_MAME_GRABBER_ORDER"
+	},
+	{
+
+		"id" : "MAMEDB_SHOW_STATUS",
+		"type" : "enum",
+		"default" : "Playable",
+		"values" : ["Playable",
+					"Playable & Imperfect",
+					"Playable & Imperfect & Preliminairy"],
+		"label" : "PREF_MAMEDB_SHOW_STATUS"
+	},
+	{
+
+		"id" : "MAMEDB_SHOW_CLONES",
+		"type" : "bool",
+		"default" : "False",
+		"label" : "PREF_MAMEDB_SHOW_CLONES"
+	},
+	{
+
+		"id" : "MAMEDB_SHOW_MATURE",
+		"type" : "bool",
+		"default" : "False",
+		"label" : "PREF_MAMEDB_SHOW_MATURE"
+	},
+	{
+		"id" : "PREVIEW_CONTROLS",
+		"type" : "bool",
+		"default" : "False",
+		"label" : "PREF_CONTROLLERPREV"
+	},
+	{
+		"id" : "CONTROLLER",
+		"type" : "enum",
+		"default" : "None",
+		"values" : ["None", "Xbox360Wireless", "PS3Bluetooth"],
+		"label" : "PREF_CONTROLLERTYPE"
+	},
+	{
+
+		"id" : "CONSOLE_GRABBER_ORDER",
+		"type" : "enum",
+		"default" : "GiantBomb->Archive->Gamefaqs->AllGame",
+		"values" : ["GiantBomb->Archive",
+					"Archive->GiantBomb",
+					"GiantBomb->Archive->Gamefaqs",
+                    "GiantBomb->Gamefaqs->Archive",
+                    "Archive->GiantBomb->Gamefaqs",
+                    "Archive->Gamefaqs->GiantBomb",
+                    "Gamefaqs->Archive->GiantBomb",
+                    "Gamefaqs->GiantBomb->Archive",
+                    "GiantBomb->Archive->Gamefaqs->AllGame",
+                    "Gamefaqs->AllGame->GiantBomb->Archive",
+                    "Gamefaqs->Archive->AllGame->GiantBomb",
+                    "Archive->Gamefaqs->AllGame->GiantBomb",
+                    "MobyGames->Gamefaqs->Archive->GiantBomb->AllGame"],
+		"label" : "PREF_CONSOLE_GRABBER_ORDER"
+	},
+	{
+		"id" : "USE_OPENVGDB",
+		"type" : "bool",
+		"default" : "False",
+		"label" : "PREF_USE_OPENVGDB"
+	},
+	{
+
+		"id" : "MATCH_PERCENT",
+		"type" : "text",
+		"default" : "100",
+		"label" : "PREF_MATCH_PERCENT"
+	},
+	{
+
+		"id" : "SCRAPE_FANART",
+		"type" : "bool",
+		"default" : "False",
+		"label" : "PREF_SCRAPE_FANART"
+	},
+	{
+
+		"id" : "EXCLUDE_DIRS",
+		"type" : "text",
+		"default" : "bios,ignore,nvram,tools",
+		"label" : "PREF_EXCLUDEDIRS"
+	},
+	{
+		"id" : "SANITIZE_GENRE",
+		"type" : "bool",
+		"default" : "False",
+		"label" : "PREF_SANITIZEGENRE"
+	}
+]
