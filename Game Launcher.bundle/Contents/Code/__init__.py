@@ -113,8 +113,8 @@ def Start():
 	# Load the needed config files
 	LoadConfigFiles()
 
-	# Start the threadpool for the grabber with 10 workers
-	POOL = ThreadPool(10)
+	# Start the threadpool for the grabber with 100 workers
+	POOL = ThreadPool(100)
 
 	ObjectContainer.view_group = 'InfoList'
 	ObjectContainer.title1 = TITLE
@@ -472,7 +472,7 @@ def ImportMameList():
 
 ####################################################################################################
 def ImportMameSystems():
-	Log(Helper.Run("_mame_driver_split.sh", os.path.join(Prefs['EMU_ROOT'], '')))
+	Log(Helper.Run("_mame_driver_split.sh", os.path.join(Prefs['EMU_ROOT'], 'Emulators/')))
 
 	result = SQDB.execute("SELECT * FROM mame;")
 	count = result.fetchall()
@@ -1261,6 +1261,8 @@ def StartRandomGame(title):
 ####################################################################################################
 def StartGame(console, rom, archive):
 
+	Log("%s %s %s " % (console, rom, archive))
+
 	if (not os.path.isdir(Prefs['EMU_ROOT'])):
 		return MessageContainer(L("MSG_TITLE_ERROR"), L("Emulator dir "+Prefs['EMU_ROOT']+" does not exist."))
 
@@ -1321,8 +1323,9 @@ def StartGame(console, rom, archive):
 	multiDisk = ";".join(multiDisk)
 
 	Log("STARTING EMU: " +emulator+ " for console: " +console+ " with ROM:" + gamePath)
+	Log("EMU PATH IS: " + os.path.join(Prefs['EMU_ROOT'], 'Emulators/'))
 	# Log(Helper.Run("_run_emulator.sh", emulator, CODE_DIR, gamePath, os.path.join(Prefs['EMU_ROOT'], ''), console.lower(), multiDisk, extraParams))
-	Log(Helper.Run(emulator+".sh", gamePath, os.path.join(Prefs['EMU_ROOT'], ''), console.lower(), multiDisk, extraParams))
+	Log(Helper.Run(emulator+".sh", gamePath, os.path.join(Prefs['EMU_ROOT'], 'Emulators/'), console.lower(), multiDisk, extraParams))
 
 	# Looks like we don't need it anymore ...
 	# Cleanup time
@@ -1382,12 +1385,12 @@ def SearchForRom(title, query=None):
 					else:
 						if (Prefs['SCRAPE_FANART']):
 							oc.add(DirectoryObject(
-								key = Callback(StartGame, title=game[8], console=game[6], rom=game[1], archive=game[2]),
-								title=game[8], subtitle=subtitle, summary=game[9], thumb=boxart, art=game[17]))
+								key = Callback(StartGame, console=game[7], rom=game[1], archive=game[2]),
+								title=game[8], summary=game[9], thumb=boxart, art=game[17]))
 						else:
 							oc.add(DirectoryObject(
-								key = Callback(StartGame, title=game[8], console=game[6], rom=game[1], archive=game[2]),
-								title=game[8], subtitle=subtitle, summary=game[9], thumb=boxart))
+								key = Callback(StartGame, console=game[7], rom=game[1], archive=game[2]),
+								title=game[8], summary=game[9], thumb=boxart))
 
 				return oc
 			else:
@@ -1435,12 +1438,12 @@ def GetAllGamesList(title, cat=None):
 		else:
 			if (Prefs['SCRAPE_FANART']):
 				oc.add(DirectoryObject(
-					key = Callback(StartGame, title=game[8], console=game[6], rom=game[1], archive=game[2]),
-					title=game[8], subtitle=subtitle, summary=game[9], thumb=boxart, art=game[17]))
+					key = Callback(StartGame, console=game[7], rom=game[1], archive=game[2]),
+					title=game[8], summary=game[9], thumb=boxart, art=game[17]))
 			else:
 				oc.add(DirectoryObject(
-					key = Callback(StartGame, title=game[8], console=game[6], rom=game[1], archive=game[2]),
-					title=game[8], subtitle=subtitle, summary=game[9], thumb=boxart))
+					key = Callback(StartGame, console=game[7], rom=game[1], archive=game[2]),
+					title=game[8], summary=game[9], thumb=boxart))
 
 	return oc
 
@@ -1519,12 +1522,12 @@ def GetListForConsole(console):
 		else:
 			if (Prefs['SCRAPE_FANART']):
 				oc.add(DirectoryObject(
-					key = Callback(StartGame, title=game[8], console=game[6], rom=game[1], archive=game[2]),
-					title=game[8], subtitle=subtitle, summary=game[9], thumb=boxart, art=game[17], duration=game[0]))
+					key = Callback(StartGame, console=game[7], rom=game[1], archive=game[2]),
+					title=game[8], summary=game[9], thumb=boxart, art=game[17], duration=game[0]))
 			else:
 				oc.add(DirectoryObject(
-					key = Callback(StartGame, title=game[8], console=game[6], rom=game[1], archive=game[2]),
-					title=game[8], subtitle=subtitle, summary=game[9], thumb=boxart, duration=game[0]))
+					key = Callback(StartGame, console=game[7], rom=game[1], archive=game[2]),
+					title=game[8], summary=game[9], thumb=boxart, duration=game[0]))
 
 	return oc
 
@@ -1649,7 +1652,7 @@ def FetchControllerData(romname, gamename):
 			Log("WARNING: Unbound button detected: " +mamecontrolbutton+ " is not configured in mame")
 
 	Log("DEBUG: Found all the data we need, generating controller image")
- 	Log(Helper.Run("_controlpanel_fullscr.sh", cleanupControllerPreviewText(gamename), os.path.join(Prefs['EMU_ROOT'], ''), players, controlstextloc, controlstextlab, controller, controlstextbut.lower(), unassignedcontrols, description))
+ 	Log(Helper.Run("_controlpanel_fullscr.sh", cleanupControllerPreviewText(gamename), os.path.join(Prefs['EMU_ROOT'], 'Emulators/'), players, controlstextloc, controlstextlab, controller, controlstextbut.lower(), unassignedcontrols, description))
 
 ####################################################################################################
 def FetchControllerDataMame(filename, controlsdict):

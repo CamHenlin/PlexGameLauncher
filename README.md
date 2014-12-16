@@ -2,7 +2,7 @@
 ---
 ### What the heck is this thing?
 
-This is an emulator launcher for numerous consoles (see Supported Consoles below)
+This is an emulator launcher frontend for Plex Media Center for numerous consoles (see Supported Consoles below)
 
 ### What is required?
 
