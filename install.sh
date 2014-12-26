@@ -62,7 +62,8 @@ chown -R $SUDO_USER ~/Documents/ROMs
 # put our emulators in place:
 mkdir ~/Library/Application\ Support/Plex\ Media\ Server/GameLauncher\ Emulators/
 # don't forget that we need to have the emulator zip in place:
-unzip -uqn $SCRIPT_DIR/Emulators\ v1.5.3.zip -d ~/Library/Application\ Support/Plex\ Media\ Server/GameLauncher\ Emulators/
+# unzip -uqn $SCRIPT_DIR/Emulators\ v1.5.3.zip -d ~/Library/Application\ Support/Plex\ Media\ Server/GameLauncher\ Emulators/
+cp -R $SCRIPT_DIR/Emulators/* ~/Library/Application\ Support/Plex\ Media\ Server/GameLauncher\ Emulators/
 chown -R $SUDO_USER ~/Library/Application\ Support/Plex\ Media\ Server/GameLauncher\ Emulators/
 
 # put the plugin bundle in place:

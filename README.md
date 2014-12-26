@@ -20,7 +20,7 @@ Download [Emulators v1.5.3.zip](http://dl.dropbox.com/u/9111377/Emulators%20v1.5
 
 Unzip gamelauncher.zip
 
-Place a *zipped* copy of Emulators v1.5.3.zip inside the unzipped copy of gamelauncher.zip (Note: I realize this is obnoxious, but the emulators pack is too large for github. I will attempt to better sort this out in future releases.)
+Place an *unzipped* copy of the Emulators directory (not the contents of the directory, the directory itself!) from the Emulators v1.5.3.zip inside the unzipped copy of gamelauncher.zip (Note: I realize this is obnoxious, but the emulators pack is too large for github. I will attempt to better sort this out in future releases.)
 
 Open Terminal.app, type 'sudo ' (note the space), and drag install.sh from the unzipped gamelauncher into the terminal. You will be prompted for your password. Enter it, and in a few moments, Game Launcher will be installed. Note: You must do this as the user you will be running plex as. It will not function for other users on the computer.
 
