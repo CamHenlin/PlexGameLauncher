@@ -14,6 +14,8 @@ This is an emulator launcher frontend for Plex Media Center for numerous console
 
 ####### Note to users of old game launcher: this will probably nuke your current game launcher instance and completely reset your configuration and will require you to reconfigure after installing or to move your ROMs to the new ROMs directory inside of your Documents folder.
 
+#### Youtube install video: [link](https://www.youtube.com/watch?v=8XPwH-__Y3I&spfreload=10)
+
 Download [gamelauncher.zip](https://github.com/CamHenlin/PlexGameLauncher/raw/master/gamelauncher.zip)
 
 Download [Emulators v1.5.3.zip](http://dl.dropbox.com/u/9111377/Emulators%20v1.5.3.zip)
