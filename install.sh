@@ -63,7 +63,7 @@ chown -R $SUDO_USER ~/Documents/ROMs
 mkdir ~/Library/Application\ Support/Plex\ Media\ Server/GameLauncher\ Emulators/
 mkdir ~/Library/Application\ Support/Plex\ Media\ Server/GameLauncher\ Emulators/Emulators/
 # don't forget that we need to have the emulator zip in place:
-# unzip -uqn $SCRIPT_DIR/Emulators\ v1.5.3.zip -d ~/Library/Application\ Support/Plex\ Media\ Server/GameLauncher\ Emulators/
+unzip -uqn $SCRIPT_DIR/Emulators\ v1.5.3.zip -d ~/Library/Application\ Support/Plex\ Media\ Server/GameLauncher\ Emulators/
 cp -R $SCRIPT_DIR/Emulators/* ~/Library/Application\ Support/Plex\ Media\ Server/GameLauncher\ Emulators/Emulators/
 chown -R $SUDO_USER ~/Library/Application\ Support/Plex\ Media\ Server/GameLauncher\ Emulators/
 
