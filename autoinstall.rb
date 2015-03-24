@@ -89,7 +89,7 @@ system "/bin/bash -o pipefail -c '/usr/bin/curl -#{curl_flags} #{HOMEBREW_REPO}/
 ohai "Unpacking gamelauncher..."
 system "/bin/bash -o pipefail -c '/usr/bin/unzip gamelauncher.zip'"
 ohai "Ready to install..."
-system "/bin/bash -o pipefail -c 'sudo ./install.sh'"
+system "/bin/bash -o pipefail -c 'sudo ./gamelauncher/install.sh'"
 # r.chdir "tempplexgamelauncher"
 # r.chdir "gamelauncher"
 # stem "/bin/bash -o pipefail -c 'sudo ls'"
