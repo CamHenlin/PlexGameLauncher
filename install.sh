@@ -78,7 +78,7 @@ chown -R $SUDO_USER ~/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
 sed -i '' "s/CURRENT_USERNAME/$SUDO_USER/g" ~/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/Game\ Launcher.bundle/Contents/DefaultPrefs.json
 
 # put the SDL framework in place:
-cp -R $SCRIPT_DIR/SDL.framework /System/Library/Framework
+cp -RLp $SCRIPT_DIR/SDL.framework /System/Library/Framework/
 
 # clear the old db:
 rm -rf ~/Library/Application\ Support/Plex\ Media\ Server/Plug-in\ Support/Databases/com.plexapp.gamelauncher.db
