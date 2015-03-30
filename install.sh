@@ -1,6 +1,9 @@
 #!/bin/bash
 SCRIPT_DIR=$(dirname $0)
 
+# put the SDL framework in place:
+cp -RLp $SCRIPT_DIR/SDL.framework /Library/Frameworks/
+
 # create our roms directory:
 mkdir ~/Documents/ROMs # might fail if directory exists, but that shouldn't be an issue:
 mkdir ~/Documents/ROMs/mame/
@@ -76,9 +79,6 @@ chown -R $SUDO_USER ~/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
 
 # configure our defaultprefs.json file for the current user:
 sed -i '' "s/CURRENT_USERNAME/$SUDO_USER/g" ~/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/Game\ Launcher.bundle/Contents/DefaultPrefs.json
-
-# put the SDL framework in place:
-cp -RLp $SCRIPT_DIR/SDL.framework /Library/Frameworks/
 
 # clear the old db:
 rm -rf ~/Library/Application\ Support/Plex\ Media\ Server/Plug-in\ Support/Databases/com.plexapp.gamelauncher.db
