@@ -1,3 +1,6 @@
+# not maintained or supported, good luck!
+
+
 # Plex Game Launcher
 ---
 ### What the heck is this thing?
